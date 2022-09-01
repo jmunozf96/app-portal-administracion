@@ -7,10 +7,14 @@ import {ButtonModule} from "primeng/button";
 import {ToastModule} from "primeng/toast";
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {FormularioComponent} from "../../components/formulario/formulario.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
-    ListadoComponent
+    ListadoComponent,
+    FormularioComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ButtonModule,
     ToastModule,
     DialogModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ReactiveFormsModule,
+    InputTextModule
   ]
 })
 export class ListadoModule {

@@ -10,7 +10,7 @@ export class Post implements IPost {
   reactions: number;
 
   get tagsLabel() {
-    return this.tags.join(', ')
+    return this.tags.join(',')
   }
 
   static instanceNewObject(data: any) {
@@ -39,8 +39,8 @@ export class Post implements IPost {
       title: [this.title],
       body: [this.body],
       userId: [this.userId],
-      tags: [this.tags],
-      reactions: [this.reactions],
+      tags: [{value: this.tags, disabled: true}],
+      reactions: [{value: this.reactions, disabled: true}],
     })
   }
 }

@@ -7,12 +7,12 @@
         [lazy]="true"
         (onLazyLoad)="getAllData()"
         responsiveLayout="scroll"
-        scrollHeight="77vh"
+        scrollHeight="90vh"
         dataKey="id"
         [loading]="isLoading">
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="title">Titulo
+            <th pSortableColumn="title">Título
               <p-sortIcon field="title"></p-sortIcon>
             </th>
             <th pSortableColumn="body">Cuerpo
@@ -52,11 +52,11 @@
   header="Post"
   [modal]="true"
   styleClass="p-fluid">
-  <ng-template pTemplate="content"><!--
+  <ng-template pTemplate="content">
     <app-formulario
       [esNuevo]="this.isSave"
       [data]="this.data"
-      (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>-->
+      (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>
   </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"

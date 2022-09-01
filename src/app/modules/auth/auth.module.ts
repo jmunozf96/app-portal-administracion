@@ -11,6 +11,9 @@ import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
 import {DividerModule} from "primeng/divider";
 import {ButtonModule} from "primeng/button";
+import {ReactiveFormsModule} from "@angular/forms";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {ButtonModule} from "primeng/button";
     CardModule,
     InputTextModule,
     DividerModule,
-    ButtonModule
+    ButtonModule,
+    ReactiveFormsModule,
+    ProgressSpinnerModule,
+    ToastModule
   ]
 })
 export class AuthModule {

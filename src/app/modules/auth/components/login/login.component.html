@@ -1,24 +1,32 @@
 <div class="grid">
-  <div class="col-12 justify-content-center">
-    <p-card>
-      <h5 class="m-0 p-0 mb-3">Login</h5>
-      <div class="grid p-fluid">
-        <div class="col-12 md:col-12">
-          <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-            <input type="text" pInputText placeholder="Correo">
+  <div class="col-12">
+    <form [formGroup]="form">
+      <p-card>
+        <h5 class="m-0 p-0 mb-3">Login</h5>
+        <div class="grid p-fluid">
+          <div class="col-12 md:col-12">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input type="text" pInputText placeholder="Usuario" formControlName="username">
+            </div>
+          </div>
+          <div class="col-12 md:col-12">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+              <input type="password" pInputText placeholder="Contraseña" formControlName="password">
+            </div>
+          </div>
+          <div class="col-12 md:col-12">
+            <p-progressSpinner class="flex align-items-center justify-content-center"
+                               *ngIf="isLoading$ | async; else btnAction"></p-progressSpinner>
+            <ng-template #btnAction>
+              <p-button label="Ingresar" type="button" (click)="login()"></p-button>
+            </ng-template>
           </div>
         </div>
-        <div class="col-12 md:col-12">
-          <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-            <input type="password" pInputText placeholder="Contraseña">
-          </div>
-        </div>
-        <div class="col-12 md:col-12">
-          <p-button label="Ingresar"></p-button>
-        </div>
-      </div>
-    </p-card>
+      </p-card>
+    </form>
+    <p-toast position="top-right"></p-toast>
+
   </div>
 </div>

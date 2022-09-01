@@ -1,26 +1,24 @@
-<div class="grid grid-nogutter">
-  <div class="col-12">
-    <p-menubar>
-      <ng-template pTemplate="start">
-        <img src="https://www.handytec.mobi/images/logos/databits/logo_databits_blue.png" height="40" class="mr-2"
-             alt="icon"/>
-      </ng-template>
-    </p-menubar>
-  </div>
-  <div class="col-12 mt-5">
-    <div class="card">
-      <div class="grid">
-        <div class="col-5 flex align-items-center justify-content-center">
-          <app-login></app-login>
-        </div>
-        <div class="col-2">
-          <p-divider layout="vertical">
-            <b>OR</b>
-          </p-divider>
-        </div>
-        <div class="col-5 flex align-items-center justify-content-center">
-          <app-register></app-register>
-        </div>
+<p-menubar>
+  <ng-template pTemplate="start">
+    <img src="https://www.handytec.mobi/images/logos/databits/logo_databits_blue.png" height="40" class="mr-2"
+         alt="icon"/>
+  </ng-template>
+</p-menubar>
+<div class="col-12">
+  <div class="grid">
+    <div class="col-12 md:col-5">
+      <div class="p-fluid">
+        <app-login></app-login>
+      </div>
+    </div>
+    <div class="col-12 md:col-2">
+      <p-divider layout="vertical">
+        <b>OR</b>
+      </p-divider>
+    </div>
+    <div class="col-12 md:col-5">
+      <div class="p-fluid">
+        <app-register></app-register>
       </div>
     </div>
   </div>

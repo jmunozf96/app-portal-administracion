@@ -10,6 +10,7 @@ import {DialogModule} from "primeng/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {InputTextModule} from "primeng/inputtext";
     DialogModule,
     ReactiveFormsModule,
     CardModule,
-    InputTextModule
+    InputTextModule,
+    ConfirmDialogModule
   ]
 })
 export class ListadoModule {

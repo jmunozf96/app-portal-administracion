@@ -48,7 +48,7 @@
               <button pButton type="button" icon="pi pi-pencil"
                       class="p-button-info p-button-rounded p-button-sm mr-1" (click)="onActiveUser(user)"></button>
               <button pButton type="button" icon="pi pi-times"
-                      class="p-button-danger p-button-rounded p-button-sm"></button>
+                      class="p-button-danger p-button-rounded p-button-sm" (click)="onDelete(user)"></button>
             </td>
           </tr>
         </ng-template>
@@ -70,3 +70,5 @@
       (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>
   </ng-template>
 </p-dialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"
+                 rejectButtonStyleClass="p-button-text"></p-confirmDialog>

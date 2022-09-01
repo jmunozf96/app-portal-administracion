@@ -22,4 +22,9 @@ export class UsuarioHttpService extends ApiHttpService {
     const url = `${this.service}/users/${user.id}`;
     return this.http.put(url, user);
   }
+
+  eliminar(user: IUser) {
+    const url = `${this.service}/users/${user.id}`;
+    return this.http.delete(url);
+  }
 }

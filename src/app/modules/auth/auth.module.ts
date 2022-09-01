@@ -7,6 +7,10 @@ import {AuthRoutingModule} from "./auth.routing.module";
 import {MenubarModule} from "primeng/menubar";
 import {SharedModule} from "primeng/api";
 import {TabViewModule} from "primeng/tabview";
+import {CardModule} from "primeng/card";
+import {InputTextModule} from "primeng/inputtext";
+import {DividerModule} from "primeng/divider";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import {TabViewModule} from "primeng/tabview";
     AuthRoutingModule,
     MenubarModule,
     SharedModule,
-    TabViewModule
+    TabViewModule,
+    CardModule,
+    InputTextModule,
+    DividerModule,
+    ButtonModule
   ]
 })
 export class AuthModule {

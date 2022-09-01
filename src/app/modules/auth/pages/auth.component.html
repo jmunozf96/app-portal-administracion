@@ -7,16 +7,21 @@
       </ng-template>
     </p-menubar>
   </div>
-  <div class="col-12 p-5">
-    <p-tabView>
-      <p-tabPanel header="Ingresar">
-        <app-login></app-login>
-      </p-tabPanel>
-      <p-tabPanel header="Registrarse">
-        <ng-template pTemplate="content">
+  <div class="col-12 mt-5">
+    <div class="card">
+      <div class="grid">
+        <div class="col-5 flex align-items-center justify-content-center">
+          <app-login></app-login>
+        </div>
+        <div class="col-2">
+          <p-divider layout="vertical">
+            <b>OR</b>
+          </p-divider>
+        </div>
+        <div class="col-5 flex align-items-center justify-content-center">
           <app-register></app-register>
-        </ng-template>
-      </p-tabPanel>
-    </p-tabView>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

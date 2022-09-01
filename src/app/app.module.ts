@@ -9,6 +9,8 @@ import {MessageService} from "primeng/api";
 import {AuthService} from "./modules/auth/services/auth.service";
 import {APP_INIT} from "./core/config/app-init.config";
 import {INTERCEPTOR_CONFIG} from "./core/config/interceptor.config";
+import {CarouselModule} from "primeng/carousel";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {INTERCEPTOR_CONFIG} from "./core/config/interceptor.config";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule,
+    ButtonModule
   ],
   providers: [
     APP_INIT,

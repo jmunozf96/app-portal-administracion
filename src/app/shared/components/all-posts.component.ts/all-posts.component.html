@@ -1,0 +1,17 @@
+<div class="col-12">
+  <div class="grid">
+    <ng-container *ngFor="let post of posts">
+      <div class="col-12">
+        <p-panel header="Header" [toggleable]="true">
+          <ng-template pTemplate="icons">
+            <button pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)">
+              <span class="pi pi-cog"></span>
+            </button>
+            <p-menu #menu id="config_menu" [popup]="true"></p-menu>
+          </ng-template>
+          <p>{{post.body}}</p>
+        </p-panel>
+      </div>
+    </ng-container>
+  </div>
+</div>

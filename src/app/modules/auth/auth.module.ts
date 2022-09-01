@@ -14,6 +14,7 @@ import {ButtonModule} from "primeng/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {ToastModule} from "primeng/toast";
+import {ComponentsSharedModule} from "../../shared/components/components.shared.module";
 
 @NgModule({
   declarations: [
@@ -21,20 +22,21 @@ import {ToastModule} from "primeng/toast";
     LoginComponent,
     RegisterComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MenubarModule,
-    SharedModule,
-    TabViewModule,
-    CardModule,
-    InputTextModule,
-    DividerModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    ProgressSpinnerModule,
-    ToastModule
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        MenubarModule,
+        SharedModule,
+        TabViewModule,
+        CardModule,
+        InputTextModule,
+        DividerModule,
+        ButtonModule,
+        ReactiveFormsModule,
+        ProgressSpinnerModule,
+        ToastModule,
+        ComponentsSharedModule
+    ]
 })
 export class AuthModule {
 }

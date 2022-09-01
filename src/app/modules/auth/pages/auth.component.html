@@ -1,0 +1,22 @@
+<div class="grid grid-nogutter">
+  <div class="col-12">
+    <p-menubar>
+      <ng-template pTemplate="start">
+        <img src="https://www.handytec.mobi/images/logos/databits/logo_databits_blue.png" height="40" class="mr-2"
+             alt="icon"/>
+      </ng-template>
+    </p-menubar>
+  </div>
+  <div class="col-12 p-5">
+    <p-tabView>
+      <p-tabPanel header="Ingresar">
+        <app-login></app-login>
+      </p-tabPanel>
+      <p-tabPanel header="Registrarse">
+        <ng-template pTemplate="content">
+          <app-register></app-register>
+        </ng-template>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

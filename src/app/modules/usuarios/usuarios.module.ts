@@ -11,7 +11,14 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     RouterModule.forChild([{
       path: '',
-      component: IndexComponent
+      component: IndexComponent,
+      children: [
+        {
+          path: 'listado',
+          loadChildren: () => import('./modules/listado/listado.module').then((m) => m.ListadoModule)
+        },
+        {path: '', redirectTo: 'listado', pathMatch: 'full'}
+      ]
     }])
   ]
 })

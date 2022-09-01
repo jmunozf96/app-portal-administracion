@@ -2,26 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
-## Development server
+## Prueba FrontEnd Reto “Portal de Administración”
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
+any of the source files.
 
-## Code scaffolding
+## API
+https://dummyjson.com/docs/users
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Administración de Usuarios
+Se tienen enumerables que reconoce el tipo de usuario
+> ADMINISTRADOR = 0
+> 
+> ANY = 1
 
-## Build
+Este cambio se lo hace desde el environment, para configurar el tipo de usuario que está ingresando
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Simulación de EndPoints
+Realmente el api solo hace una simulación de cada petición, por ende al registrar un usuario no puedes entrar con ese mismo,
+se simuló con una cuenta `X` para poder obtener el token.
 
-## Running unit tests
+>src/app/core/helpers/const.helper.ts
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Con ello obtengo token e internamente ya valido el tipo de Usuario segun la configuracion puesta en el environment

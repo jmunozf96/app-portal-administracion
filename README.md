@@ -1,16 +1,18 @@
-# AppPortalAdministracion
+# Portal de Administración
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
-## Prueba FrontEnd Reto “Portal de Administración”
+### Pasos para levantar el proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
-any of the source files.
+1. Clonar el proyecto
+2. Ejecutar `npm-install`
+3. Ejecutar `ng-serve` y navegar hacia `http://localhost:4200/`
 
-## API
+
+### API
 https://dummyjson.com/docs/users
 
-## Administración de Usuarios
+### Administración de Usuarios
 Se tienen enumerables que reconoce el tipo de usuario
 > ADMINISTRADOR = 0
 > 

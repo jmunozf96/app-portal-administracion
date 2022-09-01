@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {UsuarioHttpService} from "../../../../core/services/usuario-http.service";
-import {Usuario} from "../../../auth/models/Usuario.model";
+import {User} from "../../../auth/models/Usuario.model";
 import {finalize, map, Observable, tap} from "rxjs";
 import {ToastManagerService} from "../../../../core/facades/toast-manager.service";
 import {ConfirmationService} from "primeng/api";
@@ -15,7 +15,7 @@ import {IUsuarioPaginate} from "../../interfaces/usuarios.interface";
     ConfirmationService
   ]
 })
-export class ListadoComponent extends TableBaseComponent<Usuario, IUsuarioPaginate> {
+export class ListadoComponent extends TableBaseComponent<User, IUsuarioPaginate> {
 
   constructor(protected usuarioHttpService: UsuarioHttpService,
               protected override confirmationService: ConfirmationService,
@@ -28,7 +28,7 @@ export class ListadoComponent extends TableBaseComponent<Usuario, IUsuarioPagina
     return this.usuarioHttpService.getAll()
       .pipe(
         map(next => {
-          next.users = next.users.map(src => Usuario.instanceNewObject(src))
+          next.users = next.users.map(src => User.instanceNewObject(src))
           return next;
         }),
         tap(next => {

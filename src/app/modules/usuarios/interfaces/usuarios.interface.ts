@@ -1,6 +1,6 @@
 import {Pagination} from "../../../core/interfaces/pagination.interface";
-import {Usuario} from "../../auth/models/Usuario.model";
+import {User} from "../../auth/models/Usuario.model";
 
 export interface IUsuarioPaginate extends Pagination {
-  users: Usuario[];
+  users: User[];
 }

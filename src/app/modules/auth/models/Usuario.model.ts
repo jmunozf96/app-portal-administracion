@@ -3,7 +3,7 @@ import {FormBuilder} from "@angular/forms";
 import {TipoUsuario} from "../../../core/enums/tipo-usuario.enum";
 import {environment} from "../../../../environments/environment";
 
-export class Usuario implements IUser {
+export class User implements IUser {
   id: number | null;
   username: string;
   email: string;
@@ -15,7 +15,7 @@ export class Usuario implements IUser {
   tipoUsuario: TipoUsuario;
 
   static instanceNewObject(data: any) {
-    const user = new Usuario();
+    const user = new User();
     user.id = data['id'] ?? user.id;
     user.username = data['username'] ?? user.username;
     user.email = data['email'] ?? user.email;

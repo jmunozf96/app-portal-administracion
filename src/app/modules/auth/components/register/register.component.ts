@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Usuario} from "../../models/Usuario.model";
+import {User} from "../../models/Usuario.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RegisterService} from "../../services/register.service";
 import {ToastManagerService} from "../../../../core/facades/toast-manager.service";
@@ -13,7 +13,7 @@ import {ToastManagerService} from "../../../../core/facades/toast-manager.servic
   ]
 })
 export class RegisterComponent implements OnInit {
-  declare usuario: Usuario;
+  declare usuario: User;
   declare form: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usuario = new Usuario();
+    this.usuario = new User();
     this.form = this.usuario.formBuilder(this.fb);
   }
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       this.form.markAllAsTouched();
       throw new Error('Formulario inválido');
     }
-    const usuario = Usuario.instanceNewObject(this.form.value);
+    const usuario = User.instanceNewObject(this.form.value);
     this.registroService.registrarUsuario(usuario).subscribe(() => {
       this.form.reset();
       this.toastr.success('Usuario agregado con éxito');

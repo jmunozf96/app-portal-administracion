@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, catchError, finalize, Observable, of, tap} from "rxjs";
-import {UsuarioAuth} from "../models/UsuarioAuth.model";
-import {Usuario} from "../models/Usuario.model";
+import {UserAuth} from "../models/UsuarioAuth.model";
+import {User} from "../models/Usuario.model";
 import {AuthHttpService} from "../../../core/services/auth-http.service";
 import {Router} from "@angular/router";
 
@@ -9,23 +9,23 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser$: BehaviorSubject<Usuario | undefined>;
+  currentUser$: BehaviorSubject<User | undefined>;
   isLoading$: BehaviorSubject<boolean>;
 
   constructor(private authHttp: AuthHttpService,
               private router: Router) {
     this.isLoading$ = new BehaviorSubject<boolean>(false);
-    this.currentUser$ = new BehaviorSubject<Usuario | undefined>(undefined);
+    this.currentUser$ = new BehaviorSubject<User | undefined>(undefined);
   }
 
-  get currentUserValue(): Usuario | undefined {
+  get currentUserValue(): User | undefined {
     return this.currentUser$.value;
   }
 
-  login(username: string, password: string): Observable<Usuario | undefined> {
+  login(username: string, password: string): Observable<User | undefined> {
     this.isLoading$.next(true);
     return this.authHttp.login(username, password).pipe(
-      tap((user) => user && this.setSession(Usuario.instanceNewObject(user), UsuarioAuth.instanceNewObject(user))),
+      tap((user) => user && this.setSession(User.instanceNewObject(user), UserAuth.instanceNewObject(user))),
       catchError(() => of(undefined)),
       finalize(() => this.isLoading$.next(false)),
     );
@@ -38,7 +38,7 @@ export class AuthService {
     });
   }
 
-  get getUserByToken$(): Observable<Usuario | undefined> {
+  get getUserByToken$(): Observable<User | undefined> {
     const user = this.getUserFromLocalStorage();
     if (!user) return of(undefined);
     this.currentUser$.next(user);
@@ -47,10 +47,10 @@ export class AuthService {
 
   private getUserFromLocalStorage() {
     const user_storage = localStorage.getItem('_user');
-    return user_storage ? Usuario.instanceNewObject(JSON.parse(user_storage)) : undefined;
+    return user_storage ? User.instanceNewObject(JSON.parse(user_storage)) : undefined;
   }
 
-  private setSession(user: Usuario, auth: UsuarioAuth) {
+  private setSession(user: User, auth: UserAuth) {
     this.currentUser$.next(auth);
     localStorage.setItem('_user', JSON.stringify(user));
     localStorage.setItem('_token', auth.token);

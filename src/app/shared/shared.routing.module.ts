@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {LayoutComponent} from "./components/layout.component";
 import {NgModule} from "@angular/core";
+import {IsAdminGuard} from "../core/guards/is-admin.guard";
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'usuarios',
+        canActivate: [IsAdminGuard],
         loadChildren: () =>
           import('../modules/usuarios/usuarios.module').then((m) => m.UsuariosModule),
       },

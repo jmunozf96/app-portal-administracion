@@ -8,10 +8,10 @@ export abstract class CrudModalComponent<TModel extends ModelBaseToCRUD> impleme
   @Input('esNuevo') isNew: boolean = true;
   declare form: FormGroup;
 
-  @Output('onDataUser') dataUsuario: EventEmitter<TModel>;
+  @Output('sendData') dataModel: EventEmitter<TModel>;
 
   constructor(protected fb: FormBuilder) {
-    this.dataUsuario = new EventEmitter<TModel>();
+    this.dataModel = new EventEmitter<TModel>();
   }
 
   abstract newItem(): TModel;
@@ -31,7 +31,7 @@ export abstract class CrudModalComponent<TModel extends ModelBaseToCRUD> impleme
       throw new Error('Formulario inválido');
     }
     this.data = this.instanceNewObject(this.form.value);
-    this.dataUsuario.emit(this.data);
+    this.dataModel.emit(this.data);
     this.form.reset();
   }
 }

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {UsuarioHttpService} from "../../../core/services/usuario-http.service";
-import {Usuario} from "../models/Usuario.model";
+import {User} from "../models/Usuario.model";
 import {BehaviorSubject, catchError, finalize, of} from "rxjs";
 
 @Injectable()
@@ -11,7 +11,7 @@ export class RegisterService {
     this.isLoading$ = new BehaviorSubject<boolean>(false);
   }
 
-  registrarUsuario(usuario: Usuario) {
+  registrarUsuario(usuario: User) {
     this.isLoading$.next(true);
     return this.usuarioHttpService.guardar(usuario).pipe(
       catchError(() => of(undefined)),

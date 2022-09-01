@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Usuario} from "../../../auth/models/Usuario.model";
+import {User} from "../../../auth/models/Usuario.model";
 import {CrudModalComponent} from "../../../../core/components/base/crud-modal.component";
 
 @Component({
@@ -7,14 +7,14 @@ import {CrudModalComponent} from "../../../../core/components/base/crud-modal.co
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss']
 })
-export class FormularioComponent extends CrudModalComponent<Usuario> {
+export class FormularioComponent extends CrudModalComponent<User> {
 
-  override newItem(): Usuario {
-    return new Usuario();
+  override newItem(): User {
+    return new User();
   }
 
-  override instanceNewObject(data: any): Usuario {
-    return Usuario.instanceNewObject(data);
+  override instanceNewObject(data: any): User {
+    return User.instanceNewObject(data);
   }
 
 }

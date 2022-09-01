@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
       throw new Error('Formulario inválido');
     }
     const {username, password} = this.form.value;

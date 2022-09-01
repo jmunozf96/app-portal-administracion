@@ -1,4 +1,5 @@
 import {IUser} from "../interfaces/auth.interface";
+import {FormBuilder} from "@angular/forms";
 
 export class Usuario implements IUser {
   id: number | null;
@@ -7,6 +8,8 @@ export class Usuario implements IUser {
   firstName: string;
   lastName: string;
   gender: string;
+  password: string;
+  age: number;
 
   static instanceNewObject(data: any) {
     const user = new Usuario();
@@ -16,6 +19,8 @@ export class Usuario implements IUser {
     user.firstName = data['firstName'] ?? user.firstName;
     user.lastName = data['lastName'] ?? user.lastName;
     user.gender = data['gender'] ?? user.gender;
+    user.password = data['password'] ?? user.password;
+    user.age = data['password'] ?? user.password;
     return user;
   }
 
@@ -26,5 +31,20 @@ export class Usuario implements IUser {
     this.firstName = '';
     this.lastName = '';
     this.gender = '';
+    this.password = '';
+    this.age = 0;
+  }
+
+  formBuilder(fb: FormBuilder) {
+    return fb.group({
+      id: [this.id],
+      username: [this.username],
+      email: [this.email],
+      firstName: [this.firstName],
+      lastName: [this.lastName],
+      gender: [this.gender],
+      password: [this.password],
+      age: [this.age],
+    })
   }
 }

@@ -1,41 +1,51 @@
 <div class="grid p-fluid">
   <div class="col-12">
-    <form style="">
+    <form [formGroup]="form">
       <p-card>
         <h5 class="m-0 p-0 mb-3">Registrarse</h5>
         <div class="grid p-fluid">
           <div class="col-12 md:col-12">
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
-              <input type="text" pInputText placeholder="Nombres">
+              <input type="text" pInputText placeholder="Nombres" formControlName="firstName">
             </div>
           </div>
           <div class="col-12 md:col-12">
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
-              <input type="text" pInputText placeholder="Apellidos">
+              <input type="text" pInputText placeholder="Apellidos" formControlName="lastName">
             </div>
           </div>
           <div class="col-12 md:col-12">
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
-              <input type="text" pInputText placeholder="Edad">
+              <input type="text" pInputText placeholder="Edad" formControlName="age">
+            </div>
+          </div>
+          <div class="col-12 md:col-12">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input type="text" pInputText placeholder="Usuario" formControlName="username">
             </div>
           </div>
           <div class="col-12 md:col-12">
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon">@</span>
-              <input type="text" pInputText placeholder="Correo">
+              <input type="text" pInputText placeholder="Correo" formControlName="email">
             </div>
           </div>
           <div class="col-12 md:col-12">
             <div class="p-inputgroup">
               <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-              <input type="password" pInputText placeholder="Contraseña">
+              <input type="password" pInputText placeholder="Contraseña" formControlName="password">
             </div>
           </div>
           <div class="col-12 md:col-12">
-            <p-button label="Registrarse"></p-button>
+            <p-progressSpinner class="flex align-items-center justify-content-center"
+                               *ngIf="isLoading$ | async; else btnAction"></p-progressSpinner>
+            <ng-template #btnAction>
+              <p-button label="Registrarse" type="button" (click)="registrar()"></p-button>
+            </ng-template>
           </div>
         </div>
       </p-card>

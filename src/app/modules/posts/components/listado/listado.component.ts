@@ -1,44 +1,40 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {UsuarioHttpService} from "../../../../core/services/usuario-http.service";
-import {Usuario} from "../../../auth/models/Usuario.model";
-import {finalize, map} from "rxjs";
-import {Pagination} from "../../../../core/interfaces/pagination.interface";
-import {Table} from "primeng/table";
-import {LazyLoadEvent} from "primeng/api";
+import {ChangeDetectorRef, Component} from '@angular/core';
+import {finalize, map, Observable, tap} from "rxjs";
+import {ConfirmationService} from "primeng/api";
+import {TableBaseComponent} from "../../../../core/components/base/table-base.component";
+import {Post} from "../../models/Post.model";
+import {ToastManagerService} from "../../../../core/facades/toast-manager.service";
+import {PostHttpService} from "../../../../core/services/post-http.service";
+import {IPostPaginate} from "../../interfaces/post.interface";
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.scss']
+  styleUrls: ['./listado.component.scss'],
+  providers: [
+    ConfirmationService
+  ]
 })
-export class ListadoComponent implements OnInit {
-  @ViewChild('myTable', { static: false }) table!: Table;
-  usuarios: Usuario[] = [];
-  isLoading: boolean;
+export class ListadoComponent extends TableBaseComponent<Post, IPostPaginate> {
 
-  constructor(private usuarioHttpService: UsuarioHttpService,
-              private chref: ChangeDetectorRef) {
-    this.isLoading = false;
+  constructor(protected postHttpService: PostHttpService,
+              protected override confirmationService: ConfirmationService,
+              protected override toastr: ToastManagerService,
+              protected override chref: ChangeDetectorRef) {
+    super(postHttpService, confirmationService, toastr, chref);
   }
 
-  ngOnInit(): void {
-    this.chref.detectChanges();
-  }
-
-  getAllUsers() {
-    this.isLoading = true;
-    this.usuarioHttpService.getAll()
+  override getAllHttp(): Observable<IPostPaginate> {
+    return this.postHttpService.getAll()
       .pipe(
         map(next => {
-          next.users = next.users.map(src => Usuario.instanceNewObject(src))
+          next.posts = next.posts.map(src => Post.instanceNewObject(src))
           return next;
         }),
+        tap(next => {
+          if (next) this.datas = next.posts;
+        }),
         finalize(() => this.isLoading = false)
-      )
-      .subscribe(next => {
-        if (next) {
-          this.usuarios = next.users;
-        }
-      })
+      );
   }
 }

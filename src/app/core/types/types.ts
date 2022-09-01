@@ -5,7 +5,11 @@ export type TipoUsuario = {
   password: string;
 }
 
-export type ModelBaseToCRUD = {
+export type ModelBase = {
+  id: number | null;
+}
+
+export type ModelBaseToCRUD = ModelBase & {
   formBuilder(fb: FormBuilder): FormGroup;
 }
 

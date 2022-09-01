@@ -1,30 +1,15 @@
 import {Injectable} from "@angular/core";
-import {ApiHttpService} from "./base/api-http.service";
 import {IUser} from "../../modules/auth/interfaces/auth.interface";
 import {IUsuarioPaginate} from "../../modules/usuarios/interfaces/usuarios.interface";
+import {ApiCrudHttpService} from "./base/api-crud-http.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioHttpService extends ApiHttpService {
+export class UsuarioHttpService extends ApiCrudHttpService<IUser, IUsuarioPaginate> {
 
-  getAll() {
-    const url = `${this.service}/users`;
-    return this.http.get<IUsuarioPaginate>(url);
+  override get serviceName(): string {
+    return "users";
   }
 
-  guardar(user: IUser) {
-    const url = `${this.service}/users/add`;
-    return this.http.post<any>(url, user);
-  }
-
-  actualizar(user: IUser) {
-    const url = `${this.service}/users/${user.id}`;
-    return this.http.put<void>(url, user);
-  }
-
-  eliminar(user: IUser) {
-    const url = `${this.service}/users/${user.id}`;
-    return this.http.delete<void>(url);
-  }
 }

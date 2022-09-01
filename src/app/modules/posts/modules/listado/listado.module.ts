@@ -4,6 +4,9 @@ import {ListadoComponent} from "../../components/listado/listado.component";
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
+import {ToastModule} from "primeng/toast";
+import {DialogModule} from "primeng/dialog";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import {ButtonModule} from "primeng/button";
       }
     ]),
     TableModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    DialogModule,
+    ConfirmDialogModule
   ]
 })
 export class ListadoModule {

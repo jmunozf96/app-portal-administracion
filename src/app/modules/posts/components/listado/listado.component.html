@@ -1,35 +1,63 @@
-<p-table
-  class=""
-  #myTable
-  [value]="usuarios"
-  [lazy]="true"
-  (onLazyLoad)="getAllUsers()"
-  responsiveLayout="scroll"
-  scrollHeight="75vh"
-  dataKey="id"
-  [loading]="isLoading">
-  <ng-template pTemplate="header">
-    <tr>
-      <th pSortableColumn="name">Name
-        <p-sortIcon field="name"></p-sortIcon>
-      </th>
-      <th pSortableColumn="country.name">Country
-        <p-sortIcon field="country.name"></p-sortIcon>
-      </th>
-      <th pSortableColumn="company">Company
-        <p-sortIcon field="company"></p-sortIcon>
-      </th>
-      <th pSortableColumn="representative.name">Representative
-        <p-sortIcon field="representative.name"></p-sortIcon>
-      </th>
-    </tr>
+<div class="col-12">
+  <div class="grid">
+    <div class="col-12">
+      <p-table
+        class=""
+        [value]="datas"
+        [lazy]="true"
+        (onLazyLoad)="getAllData()"
+        responsiveLayout="scroll"
+        scrollHeight="77vh"
+        dataKey="id"
+        [loading]="isLoading">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="title">Titulo
+              <p-sortIcon field="title"></p-sortIcon>
+            </th>
+            <th pSortableColumn="body">Cuerpo
+              <p-sortIcon field="body"></p-sortIcon>
+            </th>
+            <th pSortableColumn="tagsLabel">Tags
+              <p-sortIcon field="tagsLabel"></p-sortIcon>
+            </th>
+            <th pSortableColumn="reactions">Reacciones
+              <p-sortIcon field="reactions"></p-sortIcon>
+            </th>
+            <th>Acción</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+          <tr>
+            <td>{{post['title']}}</td>
+            <td>{{post['body']}}</td>
+            <td>{{post['tagsLabel']}}</td>
+            <td>{{post['reactions']}}</td>
+            <td class="w-1">
+              <button pButton type="button" icon="pi pi-pencil"
+                      class="p-button-info p-button-rounded p-button-sm mr-1" (click)="onActive(post)"></button>
+              <button pButton type="button" icon="pi pi-times"
+                      class="p-button-danger p-button-rounded p-button-sm" (click)="onDelete(post)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<p-dialog
+  [(visible)]="showForm"
+  [style]="{width: '800px'}"
+  header="Post"
+  [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content"><!--
+    <app-formulario
+      [esNuevo]="this.isSave"
+      [data]="this.data"
+      (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>-->
   </ng-template>
-  <ng-template pTemplate="body" let-customer>
-    <tr>
-      <td>{{customer['username']}}</td>
-      <td>{{customer['email']}}</td>
-      <td>{{customer['firstName']}}</td>
-      <td>{{customer['lastName']}}</td>
-    </tr>
-  </ng-template>
-</p-table>
+</p-dialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"
+                 rejectButtonStyleClass="p-button-text"></p-confirmDialog>

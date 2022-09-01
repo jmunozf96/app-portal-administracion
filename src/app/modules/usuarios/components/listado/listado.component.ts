@@ -15,13 +15,13 @@ import {IUsuarioPaginate} from "../../interfaces/usuarios.interface";
     ConfirmationService
   ]
 })
-export class ListadoComponent extends TableBaseComponent<Usuario> {
+export class ListadoComponent extends TableBaseComponent<Usuario, IUsuarioPaginate> {
 
   constructor(protected usuarioHttpService: UsuarioHttpService,
               protected override confirmationService: ConfirmationService,
               protected override toastr: ToastManagerService,
               protected override chref: ChangeDetectorRef) {
-    super(confirmationService, toastr, chref);
+    super(usuarioHttpService, confirmationService, toastr, chref);
   }
 
   override getAllHttp(): Observable<IUsuarioPaginate> {
@@ -38,15 +38,4 @@ export class ListadoComponent extends TableBaseComponent<Usuario> {
       );
   }
 
-  override onSaveHttp(data: Usuario): Observable<Usuario> {
-    return this.usuarioHttpService.guardar(data);
-  }
-
-  override onUpdateHttp(data: Usuario): Observable<void> {
-    return this.usuarioHttpService.actualizar(data);
-  }
-
-  override onDeleteHttp(data: Usuario): Observable<void> {
-    return this.usuarioHttpService.eliminar(data);
-  }
 }

@@ -1,4 +1,5 @@
 import {IPost} from "../interfaces/post.interface";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 export class Post implements IPost {
   id: number | null;
@@ -7,6 +8,10 @@ export class Post implements IPost {
   userId: number | null;
   tags: string[];
   reactions: number;
+
+  get tagsLabel() {
+    return this.tags.join(', ')
+  }
 
   static instanceNewObject(data: any) {
     const post = new Post();
@@ -26,5 +31,16 @@ export class Post implements IPost {
     this.userId = null;
     this.tags = [];
     this.reactions = 0;
+  }
+
+  formBuilder(fb: FormBuilder): FormGroup {
+    return fb.group({
+      id: [this.id],
+      title: [this.title],
+      body: [this.body],
+      userId: [this.userId],
+      tags: [this.tags],
+      reactions: [this.reactions],
+    })
   }
 }

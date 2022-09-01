@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Usuario} from "../../../auth/models/Usuario.model";
-import {FormBuilder, FormGroup} from "@angular/forms";
 import {CrudModalComponent} from "../../../../core/components/base/crud-modal.component";
 
 @Component({

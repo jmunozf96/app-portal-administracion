@@ -4,9 +4,10 @@ import {ConfirmationService} from "primeng/api";
 import {ToastManagerService} from "../../facades/toast-manager.service";
 import {Observable} from "rxjs";
 import {Pagination} from "../../interfaces/pagination.interface";
+import {ApiCrudHttpService} from "../../services/base/api-crud-http.service";
 
 @Component({template: ''})
-export abstract class TableBaseComponent<TModel extends ModelBaseToCRUD> implements OnInit {
+export abstract class TableBaseComponent<TModel extends ModelBaseToCRUD, TModelPaginate extends Pagination> implements OnInit {
   datas: TModel[] = [];
   isLoading: boolean;
   showForm: boolean = false;
@@ -14,16 +15,26 @@ export abstract class TableBaseComponent<TModel extends ModelBaseToCRUD> impleme
   isSave: boolean = true;
   data: TModel | undefined;
 
-  constructor(protected confirmationService: ConfirmationService,
+  constructor(protected apiCrudHttpService: ApiCrudHttpService<TModel, TModelPaginate>,
+              protected confirmationService: ConfirmationService,
               protected toastr: ToastManagerService,
               protected chref: ChangeDetectorRef) {
     this.isLoading = false;
   }
 
   abstract getAllHttp(): Observable<Pagination>;
-  abstract onSaveHttp(data: TModel): Observable<TModel>;
-  abstract onUpdateHttp(data: TModel): Observable<void>;
-  abstract onDeleteHttp(data: TModel): Observable<void>;
+
+  private onSaveHttp(data: TModel): Observable<TModel> {
+    return this.apiCrudHttpService.guardar(data);
+  }
+
+  private onUpdateHttp(data: TModel): Observable<void> {
+    return this.apiCrudHttpService.actualizar(data);
+  }
+
+  private onDeleteHttp(data: TModel): Observable<void> {
+    return this.apiCrudHttpService.eliminar(data);
+  }
 
   ngOnInit(): void {
     this.chref.detectChanges();
@@ -48,7 +59,7 @@ export abstract class TableBaseComponent<TModel extends ModelBaseToCRUD> impleme
     })
   }
 
-  onActiveUser(data: TModel) {
+  onActive(data: TModel) {
     this.showForm = true;
     this.data = data;
     this.isSave = false;

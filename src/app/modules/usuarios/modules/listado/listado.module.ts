@@ -17,6 +17,9 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ListadoComponent,
     FormularioComponent
   ],
+  exports: [
+    FormularioComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([

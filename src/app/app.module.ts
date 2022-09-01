@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessageService} from "primeng/api";
 import {AuthService} from "./modules/auth/services/auth.service";
 import {APP_INIT} from "./core/config/app-init.config";
+import {INTERCEPTOR_CONFIG} from "./core/config/interceptor.config";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {APP_INIT} from "./core/config/app-init.config";
   ],
   providers: [
     APP_INIT,
+    INTERCEPTOR_CONFIG,
     MessageService,
     AuthService
   ],

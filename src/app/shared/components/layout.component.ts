@@ -21,10 +21,12 @@ export class LayoutComponent implements OnInit {
         {
           label: 'Usuarios',
           icon: 'pi pi-fw pi-user',
+          routerLink: '/usuarios'
         },
         {
           label: 'Posts',
           icon: 'pi pi-fw pi-pencil',
+          routerLink: '/posts'
         },
         {
           label: 'Quit',

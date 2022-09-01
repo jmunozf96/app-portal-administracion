@@ -12,6 +12,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('./menu-principal/menu-principal.module').then((m) => m.MenuPrincipalModule),
       },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('../modules/usuarios/usuarios.module').then((m) => m.UsuariosModule),
+      },
+      {
+        path: 'posts',
+        loadChildren: () =>
+          import('../modules/posts/posts.module').then((m) => m.PostsModule),
+      },
     ]
   }
 ];

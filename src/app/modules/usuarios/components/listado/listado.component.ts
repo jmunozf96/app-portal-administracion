@@ -1,10 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {UsuarioHttpService} from "../../../../core/services/usuario-http.service";
 import {Usuario} from "../../../auth/models/Usuario.model";
-import {finalize, map} from "rxjs";
-import {Table} from "primeng/table";
+import {finalize, map, Observable, tap} from "rxjs";
 import {ToastManagerService} from "../../../../core/facades/toast-manager.service";
-import {ConfirmationService, ConfirmEventType} from "primeng/api";
+import {ConfirmationService} from "primeng/api";
+import {TableBaseComponent} from "../../../../core/components/base/table-base.component";
+import {IUsuarioPaginate} from "../../interfaces/usuarios.interface";
 
 @Component({
   selector: 'app-listado',
@@ -14,80 +15,38 @@ import {ConfirmationService, ConfirmEventType} from "primeng/api";
     ConfirmationService
   ]
 })
-export class ListadoComponent implements OnInit {
-  @ViewChild('myTable', {static: false}) table!: Table;
-  usuarios: Usuario[] = [];
-  isLoading: boolean;
-  showForm: boolean = false;
+export class ListadoComponent extends TableBaseComponent<Usuario> {
 
-  isSave: boolean = true;
-  usuario: Usuario | undefined;
-
-  constructor(private usuarioHttpService: UsuarioHttpService,
-              private confirmationService: ConfirmationService,
-              private toastr: ToastManagerService,
-              private chref: ChangeDetectorRef) {
-    this.isLoading = false;
+  constructor(protected usuarioHttpService: UsuarioHttpService,
+              protected override confirmationService: ConfirmationService,
+              protected override toastr: ToastManagerService,
+              protected override chref: ChangeDetectorRef) {
+    super(confirmationService, toastr, chref);
   }
 
-  ngOnInit(): void {
-    this.chref.detectChanges();
-  }
-
-  getAllUsers() {
-    this.isLoading = true;
-    this.usuarioHttpService.getAll()
+  override getAllHttp(): Observable<IUsuarioPaginate> {
+    return this.usuarioHttpService.getAll()
       .pipe(
         map(next => {
           next.users = next.users.map(src => Usuario.instanceNewObject(src))
           return next;
         }),
+        tap(next => {
+          if (next) this.datas = next.users;
+        }),
         finalize(() => this.isLoading = false)
-      )
-      .subscribe(next => {
-        if (next) {
-          this.usuarios = next.users;
-        }
-      })
+      );
   }
 
-  nuevo() {
-    this.showForm = true;
+  override onSaveHttp(data: Usuario): Observable<Usuario> {
+    return this.usuarioHttpService.guardar(data);
   }
 
-  onSave(usuario: Usuario) {
-    this.showForm = false;
-    this.usuarioHttpService.guardar(usuario).subscribe(() => {
-      this.toastr.success('Usuario agregado con éxito');
-      this.getAllUsers();
-    })
+  override onUpdateHttp(data: Usuario): Observable<void> {
+    return this.usuarioHttpService.actualizar(data);
   }
 
-  onActiveUser(usuario: Usuario) {
-    this.showForm = true;
-    this.usuario = usuario;
-    this.isSave = false;
-  }
-
-  onUpdate(usuario: Usuario) {
-    this.showForm = false;
-    this.usuarioHttpService.actualizar(usuario).subscribe(() => {
-      this.toastr.success('Usuario actualizado con éxito');
-      this.getAllUsers();
-    })
-  }
-
-  onDelete(usuario: Usuario) {
-    this.confirmationService.confirm({
-      message: 'Estas seguro de eliminar este registro?',
-      header: 'Eliminar',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this.usuarioHttpService.eliminar(usuario).subscribe(() => {
-          this.toastr.success('Usuario eliminado con éxito');
-          this.getAllUsers();
-        })
-      },
-    });
+  override onDeleteHttp(data: Usuario): Observable<void> {
+    return this.usuarioHttpService.eliminar(data);
   }
 }

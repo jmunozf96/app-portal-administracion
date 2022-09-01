@@ -7,15 +7,15 @@
         type="button"
         icon="pi pi-plus"
         class="p-button-success"
-        (click)="nuevo()"></button>
+        (click)="onNew()"></button>
     </div>
     <div class="col-12">
       <p-table
         class=""
         #myTable
-        [value]="usuarios"
+        [value]="datas"
         [lazy]="true"
-        (onLazyLoad)="getAllUsers()"
+        (onLazyLoad)="getAllData()"
         responsiveLayout="scroll"
         scrollHeight="77vh"
         dataKey="id"
@@ -66,7 +66,7 @@
   <ng-template pTemplate="content">
     <app-formulario
       [esNuevo]="this.isSave"
-      [usuario]="this.usuario"
+      [data]="this.data"
       (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>
   </ng-template>
 </p-dialog>

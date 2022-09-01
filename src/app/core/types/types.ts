@@ -8,3 +8,4 @@ export type TipoUsuario = {
 export type ModelBaseToCRUD = {
   formBuilder(fb: FormBuilder): FormGroup;
 }
+

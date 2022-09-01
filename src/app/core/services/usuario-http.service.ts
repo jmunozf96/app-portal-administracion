@@ -15,16 +15,16 @@ export class UsuarioHttpService extends ApiHttpService {
 
   guardar(user: IUser) {
     const url = `${this.service}/users/add`;
-    return this.http.post(url, user);
+    return this.http.post<any>(url, user);
   }
 
   actualizar(user: IUser) {
     const url = `${this.service}/users/${user.id}`;
-    return this.http.put(url, user);
+    return this.http.put<void>(url, user);
   }
 
   eliminar(user: IUser) {
     const url = `${this.service}/users/${user.id}`;
-    return this.http.delete(url);
+    return this.http.delete<void>(url);
   }
 }

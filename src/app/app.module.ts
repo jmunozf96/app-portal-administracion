@@ -6,6 +6,8 @@ import {AppRoutingModule} from "./app.routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MessageService} from "primeng/api";
+import {AuthService} from "./modules/auth/services/auth.service";
+import {APP_INIT} from "./core/config/app-init.config";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {MessageService} from "primeng/api";
     HttpClientModule
   ],
   providers: [
-    MessageService
+    APP_INIT,
+    MessageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

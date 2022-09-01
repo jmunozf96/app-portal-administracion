@@ -1,0 +1,45 @@
+<div class="col-12">
+  <form [formGroup]="form">
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
+          <input type="text" pInputText placeholder="Nombres" formControlName="firstName">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
+          <input type="text" pInputText placeholder="Apellidos" formControlName="lastName">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user-edit"></i></span>
+          <input type="text" pInputText placeholder="Edad" formControlName="age">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" pInputText placeholder="Usuario" formControlName="username">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">@</span>
+          <input type="text" pInputText placeholder="Correo" formControlName="email">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <input type="password" pInputText placeholder="Contraseña" formControlName="password">
+        </div>
+      </div>
+      <div class="col-12 md:col-12">
+        <p-button label="Guardar" type="button" (click)="procesar()"></p-button>
+      </div>
+    </div>
+  </form>
+</div>

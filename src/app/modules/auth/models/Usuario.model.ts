@@ -22,7 +22,7 @@ export class Usuario implements IUser {
     user.lastName = data['lastName'] ?? user.lastName;
     user.gender = data['gender'] ?? user.gender;
     user.password = data['password'] ?? user.password;
-    user.age = data['password'] ?? user.password;
+    user.age = data['age'] ?? user.age;
     if (isAdmin) user.isAdmin();
     return user;
   }

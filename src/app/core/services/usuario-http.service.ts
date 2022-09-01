@@ -18,4 +18,8 @@ export class UsuarioHttpService extends ApiHttpService {
     return this.http.post(url, user);
   }
 
+  actualizar(user: IUser) {
+    const url = `${this.service}/users/${user.id}`;
+    return this.http.put(url, user);
+  }
 }

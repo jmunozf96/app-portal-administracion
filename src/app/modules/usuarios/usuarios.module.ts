@@ -5,7 +5,9 @@ import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+  ],
+  exports: [
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,7 @@ import {RouterModule} from "@angular/router";
         },
         {path: '', redirectTo: 'listado', pathMatch: 'full'}
       ]
-    }])
+    }]),
   ]
 })
 export class UsuariosModule {

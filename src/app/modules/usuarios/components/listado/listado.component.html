@@ -1,7 +1,13 @@
 <div class="col-12">
   <div class="grid">
     <div class="col-12 flex justify-content-end">
-      <button pButton label="Agregar nuevo usuario" type="button" icon="pi pi-plus" class="p-button-success"></button>
+      <button
+        pButton
+        label="Agregar nuevo usuario"
+        type="button"
+        icon="pi pi-plus"
+        class="p-button-success"
+        (click)="nuevo()"></button>
     </div>
     <div class="col-12">
       <p-table
@@ -32,15 +38,17 @@
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-user>
           <tr>
-            <td>{{customer['username']}}</td>
-            <td>{{customer['email']}}</td>
-            <td>{{customer['firstName']}}</td>
-            <td>{{customer['lastName']}}</td>
+            <td>{{user['username']}}</td>
+            <td>{{user['email']}}</td>
+            <td>{{user['firstName']}}</td>
+            <td>{{user['lastName']}}</td>
             <td>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-info p-button-rounded p-button-sm mr-1"></button>
-              <button pButton type="button" icon="pi pi-times" class="p-button-danger p-button-rounded p-button-sm"></button>
+              <button pButton type="button" icon="pi pi-pencil"
+                      class="p-button-info p-button-rounded p-button-sm mr-1" (click)="onActiveUser(user)"></button>
+              <button pButton type="button" icon="pi pi-times"
+                      class="p-button-danger p-button-rounded p-button-sm"></button>
             </td>
           </tr>
         </ng-template>
@@ -49,3 +57,16 @@
   </div>
 </div>
 <p-toast></p-toast>
+<p-dialog
+  [(visible)]="showForm"
+  [style]="{width: '450px'}"
+  header="Usuario"
+  [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <app-formulario
+      [esNuevo]="this.isSave"
+      [usuario]="this.usuario"
+      (onDataUser)="isSave ? onSave($event) : onUpdate($event)"></app-formulario>
+  </ng-template>
+</p-dialog>

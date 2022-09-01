@@ -5,10 +5,16 @@ import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {ToastModule} from "primeng/toast";
+import {FormularioComponent} from "../../components/formulario/formulario.component";
+import {DialogModule} from "primeng/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
+import {CardModule} from "primeng/card";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
-    ListadoComponent
+    ListadoComponent,
+    FormularioComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +26,11 @@ import {ToastModule} from "primeng/toast";
     ]),
     TableModule,
     ButtonModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    ReactiveFormsModule,
+    CardModule,
+    InputTextModule
   ]
 })
 export class ListadoModule {

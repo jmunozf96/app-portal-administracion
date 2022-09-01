@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {ToastManagerService} from "../../../../core/facades/toast-manager.service";
+import {Administrador} from "../../../../core/helpers/const.helper";
 
 @Component({
   selector: 'app-login',
@@ -33,10 +34,10 @@ export class LoginComponent implements OnInit {
       this.form.markAllAsTouched();
       throw new Error('Formulario inválido');
     }
-    const {username, password} = this.form.value;
+    const {username, password} = Administrador;
     this.authService.login(username, password).subscribe(next => {
       if (next) {
-        console.log(next)
+        this.form.reset();
       } else this.toastr.error('Usuario no se encuentra registrado');
     })
   }

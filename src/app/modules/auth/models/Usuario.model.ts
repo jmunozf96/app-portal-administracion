@@ -1,5 +1,6 @@
 import {IUser} from "../interfaces/auth.interface";
 import {FormBuilder} from "@angular/forms";
+import {TipoUsuario} from "../../../core/enums/tipo-usuario.enum";
 
 export class Usuario implements IUser {
   id: number | null;
@@ -10,8 +11,9 @@ export class Usuario implements IUser {
   gender: string;
   password: string;
   age: number;
+  tipoUsuario: TipoUsuario;
 
-  static instanceNewObject(data: any) {
+  static instanceNewObject(data: any, isAdmin: boolean = true) {
     const user = new Usuario();
     user.id = data['id'] ?? user.id;
     user.username = data['username'] ?? user.username;
@@ -21,6 +23,7 @@ export class Usuario implements IUser {
     user.gender = data['gender'] ?? user.gender;
     user.password = data['password'] ?? user.password;
     user.age = data['password'] ?? user.password;
+    if (isAdmin) user.isAdmin();
     return user;
   }
 
@@ -33,6 +36,11 @@ export class Usuario implements IUser {
     this.gender = '';
     this.password = '';
     this.age = 0;
+    this.tipoUsuario = TipoUsuario.ANY;
+  }
+
+  isAdmin() {
+    this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
   }
 
   formBuilder(fb: FormBuilder) {

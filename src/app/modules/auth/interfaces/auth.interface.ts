@@ -1,3 +1,5 @@
+import {TipoUsuario} from "../../../core/enums/tipo-usuario.enum";
+
 export interface IAuth {
   token: string;
 }
@@ -11,4 +13,5 @@ export interface IUser {
   gender: string;
   age: number;
   password: string;
+  tipoUsuario: TipoUsuario
 }

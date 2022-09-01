@@ -15,28 +15,32 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {ToastModule} from "primeng/toast";
 import {ComponentsSharedModule} from "../../shared/components/components.shared.module";
+import {ScrollTopModule} from "primeng/scrolltop";
+import {LoginRegisterComponent} from "./components/login-register.component";
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginRegisterComponent
   ],
-    imports: [
-        CommonModule,
-        AuthRoutingModule,
-        MenubarModule,
-        SharedModule,
-        TabViewModule,
-        CardModule,
-        InputTextModule,
-        DividerModule,
-        ButtonModule,
-        ReactiveFormsModule,
-        ProgressSpinnerModule,
-        ToastModule,
-        ComponentsSharedModule
-    ]
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    MenubarModule,
+    SharedModule,
+    TabViewModule,
+    CardModule,
+    InputTextModule,
+    DividerModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    ProgressSpinnerModule,
+    ToastModule,
+    ComponentsSharedModule,
+    ScrollTopModule
+  ]
 })
 export class AuthModule {
 }

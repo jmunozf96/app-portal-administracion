@@ -4,13 +4,21 @@ import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {MenuModule} from "primeng/menu";
+import {ScrollTopModule} from "primeng/scrolltop";
+import {ChipModule} from "primeng/chip";
+import {DividerModule} from "primeng/divider";
+import {BadgeModule} from "primeng/badge";
 
 @NgModule({
   imports: [
     CarouselModule,
     ButtonModule,
     PanelModule,
-    MenuModule
+    MenuModule,
+    ScrollTopModule,
+    ChipModule,
+    DividerModule,
+    BadgeModule
   ],
   exports: [
     AllPostsComponent

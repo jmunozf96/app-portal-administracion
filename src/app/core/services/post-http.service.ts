@@ -11,4 +11,8 @@ export class PostHttpService extends ApiCrudHttpService<IPost, IPostPaginate>{
     return "posts";
   }
 
+  getByUsuarioId(usuaioId: number) {
+    const url = `${this.service}/${this.serviceName}/user/${usuaioId}`;
+    return this.http.get<IPostPaginate>(url);
+  }
 }

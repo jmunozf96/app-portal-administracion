@@ -47,7 +47,7 @@ export class AuthService {
 
   private getUserFromLocalStorage() {
     const user_storage = localStorage.getItem('_user');
-    return user_storage ? JSON.parse(user_storage) : undefined;
+    return user_storage ? Usuario.instanceNewObject(JSON.parse(user_storage)) : undefined;
   }
 
   private setSession(user: Usuario, auth: UsuarioAuth) {
